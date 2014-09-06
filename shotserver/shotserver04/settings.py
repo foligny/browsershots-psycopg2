@@ -38,7 +38,7 @@ ADMINS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # 'postgresql', 'mysql', 'sqlite3', 'ado_mssql'.
         'NAME': 'shotserver04',
         'USER': 'fillme',
         'PASSWORD': 'fillme',
