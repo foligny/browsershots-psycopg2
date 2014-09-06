@@ -23,8 +23,11 @@ __revision__ = "$Rev: 2005 $"
 __date__ = "$Date: 2007-08-19 20:22:02 -0400 (Sun, 19 Aug 2007) $"
 __author__ = "$Author: johann $"
 
-from django.core.management import execute_manager
-import settings # Assumed to be in the same directory.
+import os, sys
 
 if __name__ == "__main__":
-    execute_manager(settings)
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+
+    from django.core.management import execute_from_command_line
+
+    execute_from_command_line(sys.argv)

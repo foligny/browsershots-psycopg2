@@ -39,7 +39,7 @@ class Sponsor(models.Model):
         _('slug'), max_length=50,
         help_text=_("This is used to generate the link to the logo image."))
     url = models.URLField(
-        _('URL'), max_length=400, unique=True, verify_exists=False)
+        _('URL'), max_length=400, unique=True)
     alt = models.CharField(max_length=100)
     width = models.IntegerField(_('width'))
     height = models.IntegerField(_('height'))
