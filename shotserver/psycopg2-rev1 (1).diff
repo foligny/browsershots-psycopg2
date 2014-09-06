@@ -1,0 +1,170 @@
+Index: shotserver04/browsers/tests.py
+===================================================================
+--- shotserver04/browsers/tests.py	(revision 3182)
++++ shotserver04/browsers/tests.py	(working copy)
+@@ -22,7 +22,7 @@
+ __date__ = "$Date$"
+ __author__ = "$Author$"
+ 
+-from psycopg import IntegrityError, ProgrammingError
++from psycopg2 import IntegrityError, ProgrammingError
+ from unittest import TestCase
+ from django.db import transaction
+ from django.contrib.auth.models import User
+Index: shotserver04/platforms/tests.py
+===================================================================
+--- shotserver04/platforms/tests.py	(revision 3182)
++++ shotserver04/platforms/tests.py	(working copy)
+@@ -22,7 +22,7 @@
+ __date__ = "$Date$"
+ __author__ = "$Author$"
+ 
+-from psycopg import DatabaseError
++from psycopg2 import DatabaseError
+ from unittest import TestCase
+ from django.db import transaction
+ from shotserver04.platforms.models import OperatingSystem
+Index: shotserver04/requests/tests.py
+===================================================================
+--- shotserver04/requests/tests.py	(revision 3182)
++++ shotserver04/requests/tests.py	(working copy)
+@@ -25,7 +25,7 @@
+ import os
+ from md5 import md5
+ from datetime import datetime, timedelta
+-from psycopg import IntegrityError
++from psycopg2 import IntegrityError
+ from xmlrpclib import Fault
+ from unittest import TestCase
+ from django.db import transaction, connection
+Index: shotserver04/urls.py
+===================================================================
+--- shotserver04/urls.py	(revision 3182)
++++ shotserver04/urls.py	(working copy)
+@@ -55,7 +55,7 @@
+ urlpatterns = patterns('',
+     (r'^$', 'shotserver04.start.views.start'),
+     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+-    (r'^admin/(.*)', admin.site.root),
++    (r'^admin/(.*)', admin.site.urls),
+     (r'^i18n/', include('django.conf.urls.i18n')),
+     (r'^(?P<url>https?://.+)$', 'shotserver04.websites.views.details'),
+     *load_app_patterns('shotserver04.', ignore=[
+Index: shotserver04/accounts/views.py
+===================================================================
+--- shotserver04/accounts/views.py	(revision 3182)
++++ shotserver04/accounts/views.py	(working copy)
+@@ -24,7 +24,7 @@
+ 
+ import time
+ from datetime import datetime, timedelta
+-from psycopg import IntegrityError
++from psycopg2 import IntegrityError
+ import smtplib
+ from django.contrib import auth
+ from django.contrib.auth.decorators import login_required
+Index: shotserver04/factories/tests.py
+===================================================================
+--- shotserver04/factories/tests.py	(revision 3182)
++++ shotserver04/factories/tests.py	(working copy)
+@@ -22,7 +22,7 @@
+ __date__ = "$Date$"
+ __author__ = "$Author$"
+ 
+-from psycopg import IntegrityError, DatabaseError
++from psycopg2 import IntegrityError, DatabaseError
+ from unittest import TestCase
+ from django.db import transaction
+ from django.contrib.auth.models import User
+Index: shotserver04/websites/tests.py
+===================================================================
+--- shotserver04/websites/tests.py	(revision 3182)
++++ shotserver04/websites/tests.py	(working copy)
+@@ -22,7 +22,7 @@
+ __date__ = "$Date$"
+ __author__ = "$Author$"
+ 
+-from psycopg import IntegrityError, ProgrammingError
++from psycopg2 import IntegrityError, ProgrammingError
+ from unittest import TestCase
+ from django.db import transaction
+ from shotserver04.websites import extract_domain
+Index: shotserver04/nonces/tests.py
+===================================================================
+--- shotserver04/nonces/tests.py	(revision 3182)
++++ shotserver04/nonces/tests.py	(working copy)
+@@ -23,7 +23,7 @@
+ __author__ = "$Author$"
+ 
+ from unittest import TestCase
+-from psycopg import IntegrityError, ProgrammingError, DatabaseError
++from psycopg2 import IntegrityError, ProgrammingError, DatabaseError
+ from django.db import transaction
+ from django.contrib.auth.models import User
+ from shotserver04.nonces.models import Nonce
+Index: shotserver04/settings.py
+===================================================================
+--- shotserver04/settings.py	(revision 3182)
++++ shotserver04/settings.py	(working copy)
+@@ -36,10 +36,10 @@
+     ('Other Name', 'other@example.com'),
+ )
+ 
+-DATABASE_ENGINE = 'postgresql' # 'postgresql', 'mysql', 'sqlite3', 'ado_mssql'.
++DATABASE_ENGINE = 'postgresql_psycopg2' # 'postgresql', 'mysql', 'sqlite3', 'ado_mssql'.
+ DATABASE_NAME = 'shotserver04' # Or path to database file if using sqlite3.
+-DATABASE_USER = ''             # Not used with sqlite3.
+-DATABASE_PASSWORD = ''         # Not used with sqlite3.
++DATABASE_USER = 'haivision'             # Not used with sqlite3.
++DATABASE_PASSWORD = 'haivision'         # Not used with sqlite3.
+ DATABASE_HOST = ''             # Set to empty string for localhost.
+ DATABASE_PORT = ''             # Set to empty string for default.
+ 
+Index: shotserver04/common/__init__.py
+===================================================================
+--- shotserver04/common/__init__.py	(revision 3182)
++++ shotserver04/common/__init__.py	(working copy)
+@@ -24,7 +24,7 @@
+ 
+ import sys
+ import xmlrpclib
+-import psycopg
++import psycopg2
+ from django.db import connection, transaction
+ from django.template import RequestContext
+ from django.shortcuts import render_to_response
+@@ -97,7 +97,7 @@
+                 result = func(*args, **kwargs)
+                 transaction.commit()
+                 return result
+-            except psycopg.DatabaseError, error:
++            except psycopg2.DatabaseError, error:
+                 transaction.rollback()
+                 serialize_error = "serialize access" in str(error).lower()
+                 if attempt == MAX_ATTEMPTS or not serialize_error:
+Index: shotserver04/start/forms/url.py
+===================================================================
+--- shotserver04/start/forms/url.py	(revision 3182)
++++ shotserver04/start/forms/url.py	(working copy)
+@@ -26,7 +26,7 @@
+ import urlparse
+ import socket
+ from datetime import datetime
+-from psycopg import IntegrityError
++from psycopg2 import IntegrityError
+ from django import forms
+ from django.forms.util import ValidationError
+ from django.utils.text import capfirst
+Index: shotserver04/screenshots/tests.py
+===================================================================
+--- shotserver04/screenshots/tests.py	(revision 3182)
++++ shotserver04/screenshots/tests.py	(working copy)
+@@ -23,7 +23,7 @@
+ __author__ = "$Author$"
+ 
+ from datetime import datetime
+-from psycopg import IntegrityError
++from psycopg2 import IntegrityError
+ from unittest import TestCase
+ from django.db import transaction
+ from django.contrib.auth.models import User
