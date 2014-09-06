@@ -23,7 +23,7 @@ __date__ = "$Date: 2008-09-03 03:11:13 -0400 (Wed, 03 Sep 2008) $"
 __author__ = "$Author: johann $"
 
 from datetime import datetime
-from psycopg import IntegrityError
+from psycopg2 import IntegrityError
 from unittest import TestCase
 from django.db import transaction
 from django.contrib.auth.models import User

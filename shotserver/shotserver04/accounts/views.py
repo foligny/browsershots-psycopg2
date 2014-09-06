@@ -24,7 +24,7 @@ __author__ = "$Author: johann $"
 
 import time
 from datetime import datetime, timedelta
-from psycopg import IntegrityError
+from psycopg2 import IntegrityError
 import smtplib
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required

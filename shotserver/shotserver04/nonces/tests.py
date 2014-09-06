@@ -23,7 +23,7 @@ __date__ = "$Date: 2008-06-14 17:27:37 -0400 (Sat, 14 Jun 2008) $"
 __author__ = "$Author: johann $"
 
 from unittest import TestCase
-from psycopg import IntegrityError, ProgrammingError, DatabaseError
+from psycopg2 import IntegrityError, ProgrammingError, DatabaseError
 from django.db import transaction
 from django.contrib.auth.models import User
 from shotserver04.nonces.models import Nonce

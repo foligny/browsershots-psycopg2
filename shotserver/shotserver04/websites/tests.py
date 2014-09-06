@@ -22,7 +22,7 @@ __revision__ = "$Rev: 2005 $"
 __date__ = "$Date: 2007-08-19 20:22:02 -0400 (Sun, 19 Aug 2007) $"
 __author__ = "$Author: johann $"
 
-from psycopg import IntegrityError, ProgrammingError
+from psycopg2 import IntegrityError, ProgrammingError
 from unittest import TestCase
 from django.db import transaction
 from shotserver04.websites import extract_domain

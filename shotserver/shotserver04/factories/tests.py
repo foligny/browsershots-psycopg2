@@ -22,7 +22,7 @@ __revision__ = "$Rev: 2894 $"
 __date__ = "$Date: 2008-06-14 17:27:37 -0400 (Sat, 14 Jun 2008) $"
 __author__ = "$Author: johann $"
 
-from psycopg import IntegrityError, DatabaseError
+from psycopg2 import IntegrityError, DatabaseError
 from unittest import TestCase
 from django.db import transaction
 from django.contrib.auth.models import User

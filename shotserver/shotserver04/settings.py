@@ -36,7 +36,7 @@ ADMINS = (
     ('Other Name', 'other@example.com'),
 )
 
-DATABASE_ENGINE = 'postgresql' # 'postgresql', 'mysql', 'sqlite3', 'ado_mssql'.
+DATABASE_ENGINE = 'postgresql_psycopg2' # 'postgresql', 'mysql', 'sqlite3', 'ado_mssql'.
 DATABASE_NAME = 'shotserver04' # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.

@@ -24,7 +24,7 @@ __author__ = "$Author: johann $"
 
 import sys
 import xmlrpclib
-import psycopg
+import psycopg2
 from django.db import connection, transaction
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -97,7 +97,7 @@ def serializable(func):
                 result = func(*args, **kwargs)
                 transaction.commit()
                 return result
-            except psycopg.DatabaseError, error:
+            except psycopg2.DatabaseError, error:
                 transaction.rollback()
                 serialize_error = "serialize access" in str(error).lower()
                 if attempt == MAX_ATTEMPTS or not serialize_error:

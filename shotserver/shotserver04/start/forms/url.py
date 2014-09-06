@@ -26,7 +26,7 @@ import re
 import urlparse
 import socket
 from datetime import datetime
-from psycopg import IntegrityError
+from psycopg2 import IntegrityError
 from django import forms
 from django.forms.util import ValidationError
 from django.utils.text import capfirst

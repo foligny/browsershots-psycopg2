@@ -25,7 +25,7 @@ __author__ = "$Author: johann $"
 import os
 from md5 import md5
 from datetime import datetime, timedelta
-from psycopg import IntegrityError
+from psycopg2 import IntegrityError
 from xmlrpclib import Fault
 from unittest import TestCase
 from django.db import transaction, connection

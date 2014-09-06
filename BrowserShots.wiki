@@ -1,0 +1,5 @@
+#summary Link to the original repo
+
+= Original Repo =
+
+http://code.google.com/p/browsershots/

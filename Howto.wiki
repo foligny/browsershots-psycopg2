@@ -1,0 +1,8 @@
+#summary Useful commands to remember
+
+= Useful commands =
+
+Install after modifications
+{{{cd shotserver
+sudo python setup.py install
+}}}
